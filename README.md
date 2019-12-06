@@ -14,6 +14,7 @@ http :/
 
 ## resources
 
+* https://vueschool.io/courses/nuxtjs-fundamentals
 * https://nuxtjs.org/api/configuration-router/#base
 * https://www.vuemastery.com/download-nuxt
 * https://ru.nuxtjs.org/
