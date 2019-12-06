@@ -1,18 +1,11 @@
-# nuxt-examples [![Build Status](https://travis-ci.org/daggerok/nuxt-examples.svg?branch=master)](https://travis-ci.org/daggerok/nuxt-examples)
-Nuxt.js playgrounds
+# STATIC
 
-```bash
-npm i -g create-nuxt-app
-create-nuxt-app simple
-cd simple
-npm i
-npm run build
-npm run generate
-docker run -it --rm --name app -p 80:80 -v $(pwd)/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
-http :/
-```
+**This directory is not required, you can delete it if you don't want to use it.**
 
-## resources
+This directory contains your static files.
+Each file inside this directory is mapped to `/`.
+Thus you'd want to delete this README.md before deploying to production.
 
-* https://www.vuemastery.com/download-nuxt
-* https://ru.nuxtjs.org/
+Example: `/static/robots.txt` is mapped as `/robots.txt`.
+
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#static).
