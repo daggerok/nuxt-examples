@@ -1,0 +1,73 @@
+env:
+  global:
+    secure: u6Ls1bNCxh7Lc6IzPkkoZVaso7McGjEQ+9LNc4nNCB6raDwZkGiOXMq67ECc+8WUyoVdiIpgPgyzIbMy6w589NF91IkoLTlZy9Ut7HAhZo5WkqQlO2kAD1JiXMjET2ATCwOWoNQvJkMZA7sJBexxKpMxl5vTz/y2iuHkw6KlCuivnxheak5KeSp8r5vyTPI6ZJcOP+UgqWq60HOCa99l3L4vlaMOcfQ43+QBUV3cXTmow897qddM5dBMVUvfc23792HISJ3PMoOOfNG77wkSTdzXJSfe5rouW41e9gYU//Y/CwAnFvdXvK9UBaVxAMh6Ye4+kCvlyHw8kqZO47QwOqIjQ1thTQ6sgpSpzhgk9CfHR/U8uXX9Q9+xLbg2BmSEuw2whugfux4MwrviqNFLfbzKA8lFqfuj0IUzZrOlADfMimNtXdGhlmJgR2+X73mJEdaeMRMMbqaR05oX8/x4gNv6XL1cdSyO7cLrNakVO+v0+bDya9qmF37BVtVqtTumVnS7WICISg1ZLOlEv1p4RbR6MBOK3O69B9x/cvCsa2G7d3MyVVu76dhpVb+RVDOiPQx9B4UEkPvJ1/sWcpdygU4UAv64fhL+1CoFPPRyEQpy+4KbEIJRwNS6lRwsJlhGtIP6Xpm8md4Cnzo9wC4I6K8RaYYFaZdkrGqXmP4as1s=
+notifications:
+  email: false
+git:
+  quiet: true
+  depth: false
+language: java
+jdk: openjdk11
+node_js: lts/*
+python: 3.7
+service: docker
+os: linux
+addons:
+  apt:
+    update: true
+    packages:
+      - curl
+      - sudo
+      - lsof
+      - docker-ce
+      - python3-pip
+install: true
+before_script:
+  - export DISPLAY=:99.0
+  - |
+    if [ ! -f ${HOME}/.local/daggerok/bash-functions/master/main.bash ] ; then
+      mkdir -p ${HOME}/.local/daggerok/bash-functions/master ;
+      curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash > ${HOME}/.local/daggerok/bash-functions/master/main.bash ;
+    fi
+    source ${HOME}/.local/daggerok/bash-functions/master/main.bash ;
+  - stop_any 80 3000 5000 8080 5432
+  - export PATH=$HOME/.local/bin:$PATH
+  - pip3 install --user --upgrade pip setuptools
+  - pip install --user --upgrade httpie
+jobs:
+  include:
+    - stage: test
+      name: simple
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/simple && npm i
+        - cd $TRAVIS_BUILD_DIR/simple && npm run build
+        - cd $TRAVIS_BUILD_DIR/simple && docker run -d --rm --name app -p 80:80 -v `pwd`/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
+        - sleep 1s
+      script:
+        - http :/
+      after_script: docker rm -f -v app
+    - stage: deploy
+      name: GitHub pages
+      script: skip
+      if: branch = "master" AND type NOT IN (pull_request)
+      before_deploy:
+        - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
+        - env
+        - set -e
+        - echo build
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: "$GITHUB_TOKEN"
+        keep-history: true
+        on:
+          branch: master
+        local-dir: target/generated-docs
+        target_branch: gh-pages
+cache:
+  pip: true
+  packages: true
+  directories:
+    - ~/.local/daggerok
+    - ~/.docker
+    - ~/.n*
