@@ -14,5 +14,6 @@ http :/
 
 ## resources
 
+* https://nuxtjs.org/api/configuration-router/#base
 * https://www.vuemastery.com/download-nuxt
 * https://ru.nuxtjs.org/
