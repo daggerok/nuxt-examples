@@ -53,11 +53,14 @@ export default {
   ** Build configuration
   */
   build: {
-    publicPath,
+    // publicPath,
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
     }
+  },
+  router: {
+    base: publicPath,
   }
 }
