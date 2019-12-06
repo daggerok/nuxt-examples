@@ -22,7 +22,7 @@ addons:
       - docker-ce
       - python3-pip
 install: true
-before_script:
+before_install:
   - export DISPLAY=:99.0
   - |
     if [ ! -f ${HOME}/.local/daggerok/bash-functions/master/main.bash ] ; then
@@ -43,7 +43,7 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/simple && npm run build
         - cd $TRAVIS_BUILD_DIR/simple && npm run generate
         - cd $TRAVIS_BUILD_DIR/simple && docker run -d --rm --name app -p 80:80 -v `pwd`/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
-        - sleep 3s
+        - sleep 1s
       script:
         - http :/
       after_script: docker rm -f -v app
