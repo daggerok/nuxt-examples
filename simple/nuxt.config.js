@@ -1,4 +1,4 @@
-
+const publicPath = !!process.env.GH_PAGES ? '/nuxt-examples/' : '/';
 export default {
   mode: 'spa',
   /*
@@ -53,6 +53,7 @@ export default {
   ** Build configuration
   */
   build: {
+    publicPath,
     /*
     ** You can extend webpack config here
     */

@@ -1,4 +1,4 @@
-# nuxt-examples
+# nuxt-examples [![Build Status](https://travis-ci.org/daggerok/nuxt-examples.svg?branch=master)](https://travis-ci.org/daggerok/nuxt-examples)
 Nuxt.js playgrounds
 
 ```bash
@@ -11,3 +11,8 @@ npm run generate
 docker run -it --rm --name app -p 80:80 -v $(pwd)/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
 http :/
 ```
+
+## resources
+
+* https://www.vuemastery.com/download-nuxt
+* https://ru.nuxtjs.org/

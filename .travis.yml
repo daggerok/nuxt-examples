@@ -1,6 +1,6 @@
 env:
   global:
-    secure: u6Ls1bNCxh7Lc6IzPkkoZVaso7McGjEQ+9LNc4nNCB6raDwZkGiOXMq67ECc+8WUyoVdiIpgPgyzIbMy6w589NF91IkoLTlZy9Ut7HAhZo5WkqQlO2kAD1JiXMjET2ATCwOWoNQvJkMZA7sJBexxKpMxl5vTz/y2iuHkw6KlCuivnxheak5KeSp8r5vyTPI6ZJcOP+UgqWq60HOCa99l3L4vlaMOcfQ43+QBUV3cXTmow897qddM5dBMVUvfc23792HISJ3PMoOOfNG77wkSTdzXJSfe5rouW41e9gYU//Y/CwAnFvdXvK9UBaVxAMh6Ye4+kCvlyHw8kqZO47QwOqIjQ1thTQ6sgpSpzhgk9CfHR/U8uXX9Q9+xLbg2BmSEuw2whugfux4MwrviqNFLfbzKA8lFqfuj0IUzZrOlADfMimNtXdGhlmJgR2+X73mJEdaeMRMMbqaR05oX8/x4gNv6XL1cdSyO7cLrNakVO+v0+bDya9qmF37BVtVqtTumVnS7WICISg1ZLOlEv1p4RbR6MBOK3O69B9x/cvCsa2G7d3MyVVu76dhpVb+RVDOiPQx9B4UEkPvJ1/sWcpdygU4UAv64fhL+1CoFPPRyEQpy+4KbEIJRwNS6lRwsJlhGtIP6Xpm8md4Cnzo9wC4I6K8RaYYFaZdkrGqXmP4as1s=
+    secure: "kl2poFRLbAO2FDzMk2UBzh5JIQmWKLLj1vQRsoKnfDhdlbY5cnjdz/wFucXefP2aX3+QUQV0pgwD4ctoq0MdWqfpjPEzth3+aSNqMZQXTXlFCKuSpv6QjGyX9eNffzFYFUsrKGb2ke6AMS8rKLONg+/BA8BlhH7Jb4yLEAcKNZ/YsFmp3F9hkMU2Nrpq3FwbOdkce0e+aB2EJqO5sb8Xhv+2If5aXCKm0e3u7Ju3Ez6jKn6YWUp2qZDu/w2ZAo8fgS1oqPycDEdjxDjFF9+bWHX7fcH+KAOPcOraUyc1RdhD33XDCeY/lwNRuLYHTDUzYE9cPM+fTVH6lEPJY4aRXTs05wx/nLBfdCmz47KKin+jp3hmnC/cHVQrx6oiVaoUIQbIB53fn4r/OkavDv8PNIJoYGJg70VE732XQmLQhjKAu06xP6OCT/XmXhfHnucQFv/5Q6jgUAf1reqVH+0yn81cLfW/WnwIYiF6yFwqxxtruIlvEjyVBNd9LWkIHKZWsDyshjmbkuvOk1NgvaFYGBNc4FKdQdUQKKQPnkKfNHbuARQ36gE+U16X2iCShLgStbbgvDJ8ZnEE325L1r+gcHCxRIR10PTyXkfbJJfr3JU6zoKYt2j3PQn8MAWr+VkkmEXSQRi5M2Z5wQPdkEP6hV/Fy01OEnLu8IkEHOII/FA="
 notifications:
   email: false
 git:
@@ -41,6 +41,7 @@ jobs:
       before_script:
         - cd $TRAVIS_BUILD_DIR/simple && npm i
         - cd $TRAVIS_BUILD_DIR/simple && npm run build
+        - cd $TRAVIS_BUILD_DIR/simple && npm run generate
         - cd $TRAVIS_BUILD_DIR/simple && docker run -d --rm --name app -p 80:80 -v `pwd`/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
         - sleep 1s
       script:
@@ -54,7 +55,8 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
         - env
         - set -e
-        - echo build
+        - cd $TRAVIS_BUILD_DIR/simple && npm i
+        - cd $TRAVIS_BUILD_DIR/simple && npm run gh
       deploy:
         provider: pages
         skip-cleanup: true
@@ -62,7 +64,7 @@ jobs:
         keep-history: true
         on:
           branch: master
-        local-dir: target/generated-docs
+        local-dir: simple/dist
         target_branch: gh-pages
 cache:
   pip: true

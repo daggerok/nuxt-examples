@@ -8,12 +8,16 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "pregh": "cross-env GH_PAGES=true nuxt build",
+    "gh": "cross-env GH_PAGES=true nuxt generate"
   },
   "dependencies": {
     "nuxt": "^2.0.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "6.0.3"
+  }
 }
