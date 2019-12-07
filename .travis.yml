@@ -37,6 +37,24 @@ jobs:
   include:
     - stage: test
       env:
+        - SUB_PROJECT="json-server-fake-api"
+      name: json-server-fake-api
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run start-api
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run start-nuxt
+        - wait_for 8080 3000
+      script:
+        - http :3000/
+        - http :8080/
+        - http :8080/db
+        - http :8080/users/
+        - http :8080/users/1
+        - http :8080/messages
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run stop-all
+    - stage: test
+      env:
         - SUB_PROJECT="simple-vuex-store"
       name: simple-vuex-store
       before_script:

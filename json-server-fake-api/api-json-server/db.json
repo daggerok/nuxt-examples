@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "daggerok",
+      "name": "Maksim Kostromin"
+    },
+    {
+      "id": 2,
+      "username": "ololo",
+      "name": "Trololo"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "from": "daggerok",
+      "to": "ololo",
+      "subject": "Aloha",
+      "body": "How r u?"
+    }
+  ]
+}
