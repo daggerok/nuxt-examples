@@ -40,12 +40,12 @@ jobs:
       env:
         - SUB_PROJECT="simple-vuex-store"
       before_script:
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm i
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm run generate
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
         - docker run -d --rm
                       --name app
                       -p 80:80
-                      -v $TRAVIS_BUILD_DIR/${SUB_PROJECT}/dist:/usr/share/nginx/html:ro
+                      -v $TRAVIS_BUILD_DIR/$SUB_PROJECT/dist:/usr/share/nginx/html:ro
                       --health-cmd="wget -q --spider http://127.0.0.1:80/ || exit 1"
                       --health-start-period=1s
                       --health-interval=1s
@@ -59,12 +59,12 @@ jobs:
       env:
         - SUB_PROJECT="simple"
       before_script:
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm i
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm run generate
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
         - docker run -d --rm
                       --name app
                       -p 80:80
-                      -v $TRAVIS_BUILD_DIR/${SUB_PROJECT}/dist:/usr/share/nginx/html:ro
+                      -v $TRAVIS_BUILD_DIR/$SUB_PROJECT/dist:/usr/share/nginx/html:ro
                       --health-cmd="wget -q --spider http://127.0.0.1:80/ || exit 1"
                       --health-start-period=1s
                       --health-interval=1s
@@ -83,8 +83,8 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
         - env
         - set -e
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm i
-        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm run gh
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run gh
       deploy:
         provider: pages
         skip-cleanup: true
@@ -92,7 +92,7 @@ jobs:
         keep-history: true
         on:
           branch: master
-        local-dir: ${SUB_PROJECT}/dist
+        local-dir: $SUB_PROJECT/dist
         target_branch: gh-pages
 cache:
   pip: true
