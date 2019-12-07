@@ -9,8 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "pregh": "cross-env GH_PAGES=true nuxt build",
-    "gh": "cross-env GH_PAGES=true nuxt generate"
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate"
   },
   "dependencies": {
     "nuxt": "2.10.2",

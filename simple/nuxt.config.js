@@ -1,4 +1,4 @@
-const publicPath = !!process.env.GH_PAGES ? '/nuxt-examples/' : '/';
+const publicPath = process.env.BASE_HREF || '/';
 export default {
   mode: 'spa',
   /*
@@ -12,7 +12,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: publicPath + 'favicon.ico' }
     ]
   },
   /*
