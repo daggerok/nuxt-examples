@@ -38,7 +38,7 @@ jobs:
     - stage: test
       env:
         - SUB_PROJECT="simple-vuex-store"
-      name: $SUB_PROJECT
+      name: simple-vuex-store
       before_script:
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
@@ -57,7 +57,7 @@ jobs:
     - stage: test
       env:
         - SUB_PROJECT="simple"
-      name: $SUB_PROJECT
+      name: simple
       before_script:
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
@@ -76,7 +76,7 @@ jobs:
     - stage: deploy
       env:
         - SUB_PROJECT="simple-vuex-store"
-      name: Deploy $SUB_PROJECT to GitHub pages
+      name: GitHub pages deploy
       script: skip
       if: branch = "master" AND type NOT IN (pull_request)
       before_deploy:
