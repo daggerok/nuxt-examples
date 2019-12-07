@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-examples-simple",
+  "homepage": "https://daggerok.github.io/nuxt-examples/",
+  "name": "simple-nuxt-examples",
   "version": "1.0.0",
   "description": "Simple Nuxt.js project",
   "author": "Maksim Kostromin",
@@ -9,7 +10,10 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate"
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate",
+    "predeploy": "npm-run-all predeploy:*",
+    "predeploy:gh": "npm run gh",
+    "deploy": "gh-pages -d ./dist -b gh-pages -m $(date +%Y-%m-%d):\\ GitHub\\ pages\\ deployment."
   },
   "dependencies": {
     "nuxt": "2.10.2",
@@ -17,6 +21,9 @@
     "@nuxtjs/dotenv": "1.4.1"
   },
   "devDependencies": {
-    "cross-env": "6.0.3"
+    "cross-env": "6.0.3",
+    "gh-pages": "2.1.1",
+    "ncp": "2.0.0",
+    "npm-run-all": "4.1.5"
   }
 }
