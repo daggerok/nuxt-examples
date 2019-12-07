@@ -6,8 +6,7 @@ notifications:
 git:
   quiet: true
   depth: false
-language: java
-jdk: openjdk11
+language: node
 node_js: lts/*
 python: 3.7
 service: docker
@@ -40,10 +39,16 @@ jobs:
       name: simple
       before_script:
         - cd $TRAVIS_BUILD_DIR/simple && npm i
-        - cd $TRAVIS_BUILD_DIR/simple && npm run build
         - cd $TRAVIS_BUILD_DIR/simple && npm run generate
-        - cd $TRAVIS_BUILD_DIR/simple && docker run -d --rm --name app -p 80:80 -v `pwd`/dist:/usr/share/nginx/html:ro nginx:1.17.6-alpine
-        - sleep 1s
+        - docker run -d --rm
+                      --name app
+                      -p 80:80
+                      -v $TRAVIS_BUILD_DIR/simple/dist:/usr/share/nginx/html:ro
+                      --health-cmd="wget -q --spider http://127.0.0.1:80/ || exit 1"
+                      --health-start-period=1s
+                      --health-interval=1s
+                      nginx:1.17.6-alpine
+        - wait_healthy_docker_containers 1
       script:
         - http :/
       after_script: docker rm -f -v app
