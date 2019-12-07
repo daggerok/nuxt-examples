@@ -37,13 +37,15 @@ jobs:
   include:
     - stage: test
       name: vuex-store
+      env:
+        - SUB_PROJECT="simple-vuex-store"
       before_script:
-        - cd $TRAVIS_BUILD_DIR/vuex-store && npm i
-        - cd $TRAVIS_BUILD_DIR/vuex-store && npm run generate
+        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm i
+        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm run generate
         - docker run -d --rm
                       --name app
                       -p 80:80
-                      -v $TRAVIS_BUILD_DIR/vuex-store/dist:/usr/share/nginx/html:ro
+                      -v $TRAVIS_BUILD_DIR/${SUB_PROJECT}/dist:/usr/share/nginx/html:ro
                       --health-cmd="wget -q --spider http://127.0.0.1:80/ || exit 1"
                       --health-start-period=1s
                       --health-interval=1s
@@ -54,13 +56,15 @@ jobs:
       after_script: docker rm -f -v app
     - stage: test
       name: simple
+      env:
+        - SUB_PROJECT="simple"
       before_script:
-        - cd $TRAVIS_BUILD_DIR/simple && npm i
-        - cd $TRAVIS_BUILD_DIR/simple && npm run generate
+        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm i
+        - cd $TRAVIS_BUILD_DIR/${SUB_PROJECT} && npm run generate
         - docker run -d --rm
                       --name app
                       -p 80:80
-                      -v $TRAVIS_BUILD_DIR/simple/dist:/usr/share/nginx/html:ro
+                      -v $TRAVIS_BUILD_DIR/${SUB_PROJECT}/dist:/usr/share/nginx/html:ro
                       --health-cmd="wget -q --spider http://127.0.0.1:80/ || exit 1"
                       --health-start-period=1s
                       --health-interval=1s
@@ -72,7 +76,7 @@ jobs:
     - stage: deploy
       name: GitHub pages
       env:
-        - SUB_PROJECT="vuex-store"
+        - SUB_PROJECT="simple-vuex-store"
       script: skip
       if: branch = "master" AND type NOT IN (pull_request)
       before_deploy:
@@ -88,7 +92,7 @@ jobs:
         keep-history: true
         on:
           branch: master
-        local-dir: vuex-store/dist
+        local-dir: ${SUB_PROJECT}/dist
         target_branch: gh-pages
 cache:
   pip: true
