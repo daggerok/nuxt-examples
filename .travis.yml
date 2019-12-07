@@ -46,12 +46,10 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run start-nuxt
         - wait_for 8080 3000
       script:
-        - http :3000/
-        - http :8080/
-        - http :8080/db
-        - http :8080/users/
-        - http :8080/users/1
         - http :8080/messages
+        - http :8080/db
+        - http :3000/
+        - http :8080/users/1
       after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run stop-all
     - stage: test
       env:
