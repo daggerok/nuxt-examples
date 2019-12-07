@@ -1,4 +1,5 @@
 const publicPath = process.env.BASE_HREF || '/';
+console.log('build with', publicPath);
 export default {
   mode: 'spa',
   /*
