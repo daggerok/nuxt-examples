@@ -12,8 +12,18 @@ docker run -it --rm --name app -p 80:80 -v $(pwd)/dist:/usr/share/nginx/html:ro 
 http :/
 ```
 
+## other repositories
+
+* https://github.com/daggerok/typescript-ionic-nuxt-app
+* https://github.com/daggerok/vue-ionic-example
+* https://github.com/daggerok/ionic-nuxt-ap
+* https://github.com/daggerok/vue-examples
+
 ## resources
 
+* https://forum.ionicframework.com/t/is-it-possible-to-use-ionic-with-nuxt/163202/3
+* https://ionicframework.com/docs/installation/cdn
+* [Nuxt.js docs](https://nuxtjs.org)
 * https://egghead.io/lessons/javascript-creating-demo-apis-with-json-server
 * https://github.com/typicode/json-server
 * https://github.com/foreversd/forever
