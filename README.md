@@ -16,6 +16,7 @@ http :/
 
 * https://github.com/daggerok/webflux-kotlin-ionic-nuxt-mono-app
 * https://github.com/daggerok/typescript-ionic-nuxt-app
+* https://github.com/daggerok/spring-boot-nuxt-spa
 * https://github.com/daggerok/vue-ionic-example
 * https://github.com/daggerok/ionic-nuxt-app
 * https://github.com/daggerok/vue-examples
