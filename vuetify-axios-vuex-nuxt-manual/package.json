@@ -1,0 +1,32 @@
+{
+  "name": "vuetify-axios-vuex-nuxt-manual",
+  "version": "1.0.0",
+  "description": "My scrumtrulescent Nuxt.js project",
+  "author": "Maksim Kostromin",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest",
+    "forever": "forever start ./node_modules/.bin/nuxt",
+    "logs": "forever -f logs 0",
+    "stop": "forever stopall --killTree"
+  },
+  "dependencies": {
+    "@mdi/font": "4.7.95",
+    "@nuxtjs/axios": "5.8.0",
+    "@nuxtjs/dotenv": "1.4.1",
+    "nuxt": "2.10.2",
+    "vuetify": "2.1.14"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "1.0.0-beta.27",
+    "babel-jest": "24.9.0",
+    "jest": "24.9.0",
+    "sass": "1.23.7",
+    "sass-loader": "8.0.0",
+    "vue-jest": "4.0.0-beta.2"
+  }
+}

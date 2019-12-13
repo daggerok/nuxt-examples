@@ -37,6 +37,30 @@ jobs:
   include:
     - stage: test
       env:
+        - SUB_PROJECT="vuetify-axios-vuex-nuxt"
+      name: vuetify-axios-vuex-nuxt
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm logs &
+        - wait_for 3000
+      script:
+        - http :3000
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
+    - stage: test
+      env:
+        - SUB_PROJECT="vuetify-axios-vuex-nuxt-manual"
+      name: vuetify-axios-vuex-nuxt-manual
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm logs &
+        - wait_for 3000
+      script:
+        - http :3000
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
+    - stage: test
+      env:
         - SUB_PROJECT="json-server-fake-api"
       name: json-server-fake-api
       before_script:
