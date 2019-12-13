@@ -42,7 +42,7 @@ jobs:
       before_script:
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm logs &
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
         - wait_for 3000
       script:
         - http :3000
@@ -54,7 +54,7 @@ jobs:
       before_script:
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm logs &
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
         - wait_for 3000
       script:
         - http :3000
