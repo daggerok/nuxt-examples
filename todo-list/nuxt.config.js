@@ -17,7 +17,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: baseHref + 'favicon.ico' }
-    ]
+    ],
+    base: {
+      href: baseHref,
+    }
   },
   router: {
     base: baseHref,
