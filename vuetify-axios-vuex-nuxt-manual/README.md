@@ -73,3 +73,8 @@ export default {
   }
 }
 ```
+
+## resources
+
+* https://vuetifyjs.com/ru/customization/icons
+* https://vuetifyjs.com/ru/getting-started/quick-start
