@@ -14,7 +14,8 @@
     "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js",
     "forever": "forever start ./node_modules/.bin/nuxt",
     "logs": "forever -f logs 0",
-    "stop": "forever stopall --killTree"
+    "stop": "forever stopall --killTree",
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run build"
   },
   "dependencies": {
     "nuxt": "2.10.2",
@@ -27,6 +28,7 @@
     "ava": "2.4.0",
     "babel-plugin-module-resolver": "4.0.0",
     "browser-env": "3.3.0",
+    "cross-env": "6.0.3",
     "forever": "1.0.0",
     "require-extension-hooks": "0.3.3",
     "require-extension-hooks-babel": "1.0.0",

@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
+const baseHref = process.env.BASE_HREF || '/';
+
 export default {
   mode: 'universal',
   /*
@@ -14,8 +16,11 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: baseHref + 'favicon.ico' }
     ]
+  },
+  router: {
+    base: baseHref,
   },
   /*
   ** Customize the progress-bar color
