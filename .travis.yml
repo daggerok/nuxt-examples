@@ -37,6 +37,18 @@ jobs:
   include:
     - stage: test
       env:
+        - SUB_PROJECT="todo-list"
+      name: todo-list
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
+        - wait_for 3000
+      script:
+        - http :3000
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
+    - stage: test
+      env:
         - SUB_PROJECT="vuetify-axios-vuex-nuxt"
       name: vuetify-axios-vuex-nuxt
       before_script:

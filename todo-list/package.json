@@ -1,0 +1,35 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "TODO list",
+  "author": "Maksim Kostromin",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "ava",
+    "test:unit": "cross-env TEST=unit ava --config unit.config.js",
+    "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js",
+    "forever": "forever start ./node_modules/.bin/nuxt",
+    "logs": "forever -f logs 0",
+    "stop": "forever stopall --killTree"
+  },
+  "dependencies": {
+    "nuxt": "2.10.2",
+    "@nuxtjs/axios": "5.8.0",
+    "@nuxtjs/dotenv": "1.4.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "1.9.1",
+    "@vue/test-utils": "1.0.0-beta.27",
+    "ava": "2.4.0",
+    "babel-plugin-module-resolver": "4.0.0",
+    "browser-env": "3.3.0",
+    "forever": "1.0.0",
+    "require-extension-hooks": "0.3.3",
+    "require-extension-hooks-babel": "1.0.0",
+    "require-extension-hooks-vue": "3.0.0"
+  }
+}
