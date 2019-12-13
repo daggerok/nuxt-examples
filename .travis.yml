@@ -40,7 +40,7 @@ jobs:
         - SUB_PROJECT="todo-list"
       name: todo-list
       before_script:
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
         - wait_for 3000
@@ -137,7 +137,7 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
         - env
         - set -e
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
         - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run gh
       deploy:
         provider: pages
