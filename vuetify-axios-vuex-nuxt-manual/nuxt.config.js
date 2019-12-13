@@ -29,7 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // '~plugins/vuetify.js',
+    '~/plugins/vuetify.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -45,7 +45,20 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader',
   ],
+  webfontloader: {
+    google: {
+      //Loads Roboto font with according weights and displays as swap...
+      families: ['Roboto:100,300,400,500,700,900&display=swap']
+    }
+  },
+  vuetify: {
+    defaultAssets: false,
+    icons: {
+      iconfont: 'mdiSvg',
+    },
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

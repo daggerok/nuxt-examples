@@ -5,7 +5,8 @@ import Vuetify from 'vuetify/lib';
 Vue.use(Vuetify);
 
 export default new Vuetify({
+  defaultAssets: false,
   icons: {
-    iconfont: 'mdi', // default - only for display purposes
+    iconfont: 'mdiSvg', // default - only for display purposes
   },
 });
