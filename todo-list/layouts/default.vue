@@ -105,7 +105,22 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
-        }
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Custom Path Route',
+          to: '/my-custom-route'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'First Custom Path Route',
+          to: '/my-custom-route/1'
+        },
+        {
+          icon: 'mdi-apps',
+          title: '2nd Custom Path Route',
+          to: '/my-custom-route/two'
+        },
       ],
       miniVariant: false,
       right: true,
