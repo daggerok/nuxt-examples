@@ -15,7 +15,8 @@
     "forever": "forever start ./node_modules/.bin/nuxt",
     "logs": "forever -f logs 0",
     "stop": "forever stopall --killTree",
-    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run build"
+    "pregh": "cross-env BASE_HREF='/nuxt-examples/' npm run build",
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate"
   },
   "dependencies": {
     "nuxt": "2.10.2",

@@ -46,6 +46,7 @@ jobs:
         - wait_for 3000
       script:
         - http :3000
+        - http :3000/inspire
       after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
     - stage: test
       env:
