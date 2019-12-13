@@ -127,7 +127,7 @@ jobs:
       after_script: docker rm -f -v app
     - stage: deploy
       env:
-        - SUB_PROJECT="simple-vuex-store"
+        - SUB_PROJECT="todo-list"
       name: GitHub pages deploy
       script: skip
       if: branch = "master" AND type NOT IN (pull_request)
