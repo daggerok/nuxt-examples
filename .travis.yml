@@ -13,7 +13,6 @@ service: docker
 os: linux
 addons:
   apt:
-    update: true
     packages:
       - curl
       - sudo
