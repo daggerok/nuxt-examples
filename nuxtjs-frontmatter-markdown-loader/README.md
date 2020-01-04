@@ -101,6 +101,7 @@ export default {
 
 ## resources
 
+* https://www.youtube.com/watch?v=THT5FefYZCo
 * https://www.npmjs.com/package/@nuxtjs/markdownit
 * https://markdown-it.github.io/
 * https://github.com/nuxt-community/markdownit-loader/blob/master/example/src/app.vue
