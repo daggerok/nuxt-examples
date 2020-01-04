@@ -10,6 +10,10 @@
 </template>
 
 <style>
+.ul {
+  list-style: none;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
