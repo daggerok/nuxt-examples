@@ -1,0 +1,32 @@
+{
+  "name": "nuxtjs-frontmatter-markdown-loader",
+  "version": "1.0.0",
+  "description": "My wonderful Nuxt.js project",
+  "author": "Maksim Kostromin",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "forever": "forever start ./node_modules/.bin/nuxt",
+    "logs": "forever -f logs 0",
+    "stop": "forever stopall --killTree",
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate"
+  },
+  "dependencies": {
+    "@nuxtjs/markdownit": "1.2.7",
+    "github-markdown-css": "3.0.1",
+    "highlight.js": "9.17.1",
+    "markdown-it-attrs": "3.0.1",
+    "markdown-it-div": "1.1.0",
+    "nuxt": "2.11.0",
+    "nuxt-i18n": "6.4.1"
+  },
+  "devDependencies": {
+    "@nuxt/generator": "2.11.0",
+    "cross-env": "6.0.3",
+    "forever": "1.0.0",
+    "frontmatter-markdown-loader": "3.1.0"
+  }
+}

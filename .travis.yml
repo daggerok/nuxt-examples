@@ -36,6 +36,19 @@ jobs:
   include:
     - stage: test
       env:
+        - SUB_PROJECT="nuxtjs-frontmatter-markdown-loader"
+      name: nuxtjs-frontmatter-markdown-loader
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
+        - wait_for 3000
+      script:
+        - http :3000
+        - http :3000/ololo >/dev/null
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run stop
+    - stage: test
+      env:
         - SUB_PROJECT="todo-list"
       name: todo-list
       before_script:
@@ -128,7 +141,7 @@ jobs:
       after_script: docker rm -f -v app
     - stage: deploy
       env:
-        - SUB_PROJECT="todo-list"
+        - SUB_PROJECT="nuxtjs-frontmatter-markdown-loader"
       name: GitHub pages deploy
       script: skip
       if: branch = "master" AND type NOT IN (pull_request)
