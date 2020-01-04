@@ -23,6 +23,7 @@ http :/
 
 ## resources
 
+* https://github.com/sumcumo/nuxt-styleguide/issues/15
 * https://vuetifyjs.com/ru/customization/icons
 * https://vuetifyjs.com/ru/getting-started/quick-start
 * https://forum.ionicframework.com/t/is-it-possible-to-use-ionic-with-nuxt/163202/3
