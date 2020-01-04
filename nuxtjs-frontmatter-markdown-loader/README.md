@@ -101,6 +101,7 @@ export default {
 
 ## resources
 
+* https://github.com/nuxt-community/markdownit-loader/blob/master/example/src/app.vue
 * https://github.com/marinaaisa/nuxt-markdown-blog-starter
 * [frontmatter-markdown-loader example](https://github.com/hmsk/frontmatter-markdown-loader-nuxt-sample/)
 * [Build own blog with Nuxt.js](https://www.youtube.com/watch?v=qOjbRDVQzH8)
