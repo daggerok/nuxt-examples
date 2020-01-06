@@ -14,6 +14,7 @@ http :/
 
 ## other repositories
 
+* https://github.com/daggerok/saber-examples
 * https://github.com/daggerok/typescript-ionic-nuxt-app
 * https://github.com/daggerok/webflux-kotlin-nuxt-app
 * https://github.com/daggerok/spring-boot-nuxt-spa
