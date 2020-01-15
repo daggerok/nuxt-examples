@@ -8,7 +8,6 @@ git:
   depth: false
 language: node
 node_js: lts/*
-python: 3.7
 service: docker
 os: linux
 addons:
@@ -17,8 +16,8 @@ addons:
       - curl
       - sudo
       - lsof
+      - httpie
       - docker-ce
-      - python3-pip
 install: true
 before_install:
   - export DISPLAY=:99.0
@@ -28,12 +27,22 @@ before_install:
       curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash > ${HOME}/.local/daggerok/bash-functions/master/main.bash ;
     fi
     source ${HOME}/.local/daggerok/bash-functions/master/main.bash ;
-  - stop_any 80 3000 5000 8080 5432
-  - export PATH=$HOME/.local/bin:$PATH
-  - pip3 install --user --upgrade pip setuptools
-  - pip install --user --upgrade httpie
+  - stop_any 30 80 3000 5000 8080 5432
 jobs:
   include:
+    - stage: test
+      env:
+        - SUB_PROJECT="nuxtjs-composition-api"
+      name: nuxtjs-composition-api
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
+        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
+        - wait_for 3000
+      script:
+        - http :3000
+        - http :3000/ololo >/dev/null
+      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run stop
     - stage: test
       env:
         - SUB_PROJECT="nuxtjs-frontmatter-markdown-loader"
@@ -141,7 +150,7 @@ jobs:
       after_script: docker rm -f -v app
     - stage: deploy
       env:
-        - SUB_PROJECT="nuxtjs-frontmatter-markdown-loader"
+        - SUB_PROJECT="nuxtjs-composition-api"
       name: GitHub pages deploy
       script: skip
       if: branch = "master" AND type NOT IN (pull_request)
@@ -161,8 +170,7 @@ jobs:
         local-dir: $SUB_PROJECT/dist
         target_branch: gh-pages
 cache:
-  pip: true
-  packages: true
+  npm: true
   directories:
     - ~/.local/daggerok
     - ~/.docker
