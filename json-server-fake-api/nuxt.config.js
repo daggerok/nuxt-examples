@@ -1,7 +1,9 @@
 const publicPath = process.env.BASE_HREF || '/';
 console.log('build with', publicPath);
 export default {
-  mode: 'spa',
+  target: 'static', // fix warning...
+  // mode: 'spa', // fix warning: deprecation
+  ssr: false,
   /*
   ** Headers of the page
   */

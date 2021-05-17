@@ -15,22 +15,22 @@
     "prestart-nuxt": "npm run mkdirp-forever",
     "start-nuxt": "forever start ./node_modules/.bin/nuxt start",
     "prestart-api": "npm run mkdirp-forever",
-    "start-api": "forever start ./node_modules/.bin/json-server --watch ./api-json-server/db.json --port 8080",
-    "stop-all": "forever stopall --killTree"
+    "start-api": "forever start ./node_modules/.bin/json-server --watch ./api-json-server/db.json --port 8080 --minUptime 10000 --spinSleepTime 10000  --trace-warnings",
+    "stop-all": "forever stopall --killTree  --trace-warnings"
   },
   "dependencies": {
-    "nuxt": "2.10.2",
-    "@nuxtjs/axios": "5.8.0",
-    "@nuxtjs/dotenv": "1.4.1"
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "1.4.1",
+    "nuxt": "^2.2.0"
   },
   "devDependencies": {
-    "@nuxt/types": "0.5.3",
+    "@nuxt/types": "^0.4.1",
     "@types/node": "12.12.14",
-    "axios": "0.19.0",
+    "axios": "^0.21.1",
     "cross-env": "6.0.3",
-    "forever": "1.0.0",
+    "forever": "^3.0.4",
     "json-server": "0.15.1",
-    "mkdirp": "0.5.1",
+    "mkdirp": "^0.5.5",
     "vuex": "3.1.2"
   }
 }

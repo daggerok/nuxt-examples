@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  github-pages:
+    runs-on: ubuntu-latest
+    env:
+      SUB_PROJECT: nuxtjs-composition-api
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: |
+          ~/.n*
+          ~/.m2/repository
+          !~/.m2/repository/com/gituhb/daggerok
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - run: cd $GITHUB_WORKPLACE/$SUB_PROJECT && npm i -E
+    - run: cd $GITHUB_WORKPLACE/$SUB_PROJECT && npm run gh
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: $SUB_PROJECT/dist # The folder the action should deploy.
