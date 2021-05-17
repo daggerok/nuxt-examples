@@ -7,7 +7,6 @@
 # osx
 .DS_Store
 # npm
-package-lock.json
 node_modules
 /dist
 # local env files
