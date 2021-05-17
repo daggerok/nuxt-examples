@@ -13,6 +13,7 @@ jobs:
       id: cache
       with:
         path: |
+          ./json-server-fake-api/node_modules
           ~/.n*
           ~/.m2/repository
           !~/.m2/repository/com/gituhb/daggerok
