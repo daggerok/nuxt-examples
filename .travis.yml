@@ -84,34 +84,6 @@ jobs:
       after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
     - stage: test
       env:
-        - SUB_PROJECT="vuetify-axios-vuex-nuxt-manual"
-      name: vuetify-axios-vuex-nuxt-manual
-      before_script:
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run forever
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run logs &
-        - wait_for 3000
-      script:
-        - http :3000
-      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm stop
-    - stage: test
-      env:
-        - SUB_PROJECT="json-server-fake-api"
-      name: json-server-fake-api
-      before_script:
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run start-api
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run generate
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run start-nuxt
-        - wait_for 8080 3000
-      script:
-        - http :8080/messages
-        - http :8080/db
-        - http :3000/
-        - http :8080/users/1
-      after_script: cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run stop-all
-    - stage: test
-      env:
         - SUB_PROJECT="simple-vuex-store"
       name: simple-vuex-store
       before_script:
@@ -148,27 +120,6 @@ jobs:
       script:
         - http :/
       after_script: docker rm -f -v app
-    # - stage: deploy
-    #   env:
-    #     - SUB_PROJECT="nuxtjs-composition-api"
-    #   name: GitHub pages deploy
-    #   script: skip
-    #   if: branch = "master" AND type NOT IN (pull_request)
-    #   before_deploy:
-    #     - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
-    #     - env
-    #     - set -e
-    #     - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
-    #     - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run gh
-    #   deploy:
-    #     provider: pages
-    #     skip-cleanup: true
-    #     github-token: "$GITHUB_TOKEN"
-    #     keep-history: true
-    #     on:
-    #       branch: master
-    #     local-dir: $SUB_PROJECT/dist
-    #     target_branch: gh-pages
 cache:
   npm: true
   directories:

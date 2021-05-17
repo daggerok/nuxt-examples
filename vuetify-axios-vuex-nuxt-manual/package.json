@@ -9,27 +9,28 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest",
-    "forever": "forever start ./node_modules/.bin/nuxt",
-    "logs": "forever -f logs 0",
-    "stop": "forever stopall --killTree"
+    "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate",
+    "mkdirp-forever": "mkdirp build/forever",
+    "prestart-nuxt": "npm run mkdirp-forever",
+    "start-nuxt": "forever start ./node_modules/.bin/nuxt start",
+    "prestart-api": "npm run mkdirp-forever",
+    "start-api": "forever start ./node_modules/.bin/json-server --watch ./api-json-server/db.json --port 8080 --minUptime 10000 --spinSleepTime 10000  --trace-warnings",
+    "stop-all": "forever stopall --killTree  --trace-warnings"
   },
   "dependencies": {
-    "@mdi/font": "4.7.95",
-    "@nuxtjs/axios": "5.8.0",
+    "@mdi/font": "5.9.55",
+    "@nuxtjs/axios": "5.13.1",
     "@nuxtjs/dotenv": "1.4.1",
-    "nuxt": "2.10.2",
-    "vuetify": "2.1.14"
+    "core-js": "3.12.1",
+    "nuxt": "^2.2.0",
+    "vuetify": "2.5.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "1.9.1",
-    "@vue/test-utils": "1.0.0-beta.27",
-    "babel-jest": "24.9.0",
-    "forever": "1.0.0",
-    "jest": "24.9.0",
-    "nuxt-webfontloader": "1.1.0",
-    "sass": "1.23.7",
-    "sass-loader": "8.0.0",
-    "vue-jest": "4.0.0-beta.2"
+    "@nuxtjs/vuetify": "1.11.3",
+    "@vue/test-utils": "1.2.0",
+    "babel-jest": "26.6.3",
+    "cross-env": "7.0.3",
+    "forever": "^0.10.10",
+    "nuxt-webfontloader": "1.1.0"
   }
 }
