@@ -148,27 +148,27 @@ jobs:
       script:
         - http :/
       after_script: docker rm -f -v app
-    - stage: deploy
-      env:
-        - SUB_PROJECT="nuxtjs-composition-api"
-      name: GitHub pages deploy
-      script: skip
-      if: branch = "master" AND type NOT IN (pull_request)
-      before_deploy:
-        - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
-        - env
-        - set -e
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
-        - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run gh
-      deploy:
-        provider: pages
-        skip-cleanup: true
-        github-token: "$GITHUB_TOKEN"
-        keep-history: true
-        on:
-          branch: master
-        local-dir: $SUB_PROJECT/dist
-        target_branch: gh-pages
+    # - stage: deploy
+    #   env:
+    #     - SUB_PROJECT="nuxtjs-composition-api"
+    #   name: GitHub pages deploy
+    #   script: skip
+    #   if: branch = "master" AND type NOT IN (pull_request)
+    #   before_deploy:
+    #     - if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ ".$TRAVIS_BRANCH" != ".master" ] ; then exit 0 ; fi
+    #     - env
+    #     - set -e
+    #     - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm i -E
+    #     - cd $TRAVIS_BUILD_DIR/$SUB_PROJECT && npm run gh
+    #   deploy:
+    #     provider: pages
+    #     skip-cleanup: true
+    #     github-token: "$GITHUB_TOKEN"
+    #     keep-history: true
+    #     on:
+    #       branch: master
+    #     local-dir: $SUB_PROJECT/dist
+    #     target_branch: gh-pages
 cache:
   npm: true
   directories:
