@@ -7,8 +7,6 @@ on:
 jobs:
   github-pages:
     runs-on: ubuntu-latest
-    env:
-      SUB_PROJECT: nuxtjs-composition-api
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
@@ -22,10 +20,11 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 14
-    - run: cd $GITHUB_WORKPLACE/$SUB_PROJECT && npm i -E
-    - run: cd $GITHUB_WORKPLACE/$SUB_PROJECT && npm run gh
+    - run: npm -v ; node -v
+    - run: cd json-server-fake-api ; npm i -E
+    - run: cd json-server-fake-api ; npm run gh
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages # The branch the action should deploy to.
-        folder: $SUB_PROJECT/dist # The folder the action should deploy.
+        folder: json-server-fake-api/dist # The folder the action should deploy.

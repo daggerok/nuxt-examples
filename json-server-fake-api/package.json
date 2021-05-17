@@ -19,18 +19,20 @@
     "stop-all": "forever stopall --killTree  --trace-warnings"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/axios": "5.13.1",
     "@nuxtjs/dotenv": "1.4.1",
+    "core-js": "3.12.1",
     "nuxt": "^2.2.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^0.4.1",
-    "@types/node": "12.12.14",
-    "axios": "^0.21.1",
-    "cross-env": "6.0.3",
+    "@babel/core": "7.14.2",
+    "@nuxt/types": "0.4.1",
+    "@types/node": "15.3.0",
+    "axios": "0.21.1",
+    "cross-env": "7.0.3",
     "forever": "^3.0.4",
-    "json-server": "0.15.1",
-    "mkdirp": "^0.5.5",
-    "vuex": "3.1.2"
+    "json-server": "0.16.3",
+    "mkdirp": "1.0.4",
+    "vuex": "3.6.2"
   }
 }
