@@ -5,6 +5,44 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
+  json-server-fake-api:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: |
+          ./json-server-fake-api/node_modules
+          ~/.n*
+          ~/.m2/repository
+          !~/.m2/repository/com/gituhb/daggerok
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - run: npm -v ; node -v
+    - run: cd json-server-fake-api ; npm i -E
+    - run: cd json-server-fake-api ; npm run build
+  # vuetify-axios-vuex-nuxt-manual:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: actions/cache@v2
+  #     id: cache
+  #     with:
+  #       path: |
+  #         ./vuetify-axios-vuex-nuxt-manual/node_modules
+  #         ~/.n*
+  #         ~/.m2/repository
+  #         !~/.m2/repository/com/gituhb/daggerok
+  #       key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+  #   - uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 14
+  #   - run: npm -v ; node -v
+  #   - run: cd vuetify-axios-vuex-nuxt-manual ; npm i -E
+  #   - run: cd vuetify-axios-vuex-nuxt-manual ; npm run build
   github-pages:
     runs-on: ubuntu-latest
     steps:
@@ -13,6 +51,7 @@ jobs:
       id: cache
       with:
         path: |
+          ./json-server-fake-api/node_modules
           ~/.n*
           ~/.m2/repository
           !~/.m2/repository/com/gituhb/daggerok
