@@ -23,7 +23,7 @@
     "@nuxtjs/dotenv": "1.4.1",
     "core-js": "3.12.1",
     "nuxt": "^2.2.0",
-    "vuetify": "2.5.0"
+    "vuetify": "2.6.10"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "1.11.3",
