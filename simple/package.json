@@ -13,7 +13,7 @@
     "gh": "cross-env BASE_HREF='/nuxt-examples/' npm run generate"
   },
   "dependencies": {
-    "nuxt": "2.10.2",
+    "nuxt": "2.15.8",
     "@nuxtjs/axios": "5.8.0",
     "@nuxtjs/dotenv": "1.4.1"
   },
